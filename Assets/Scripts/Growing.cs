@@ -9,10 +9,10 @@ public class growing : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(Grow());
+
     }
 
-    IEnumerator Grow()
+    public IEnumerator Grow()
     {
         float time = 0f;
 

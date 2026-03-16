@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d52a9b78be77ba4fb4853dd188dd296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  building: {fileID: 5093127314883720949, guid: a0043d25993530e4a95a532c8f412fb8, type: 3}
+  prefab: {fileID: 5093127314883720949, guid: a0043d25993530e4a95a532c8f412fb8, type: 3}
 --- !u!4 &247379612
 Transform:
   m_ObjectHideFlags: 0

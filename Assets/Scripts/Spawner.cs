@@ -1,27 +1,35 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject building;
+    public GameObject prefab;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    bool canSpawn = true;
 
-    // Update is called once per frame
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame && canSpawn)
         {
-            Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
-            mousePos.z = 0f;
-
-            Instantiate(building, mousePos, Quaternion.identity);
+            StartCoroutine(SpawnRoutine());
         }
+    }
 
+    IEnumerator SpawnRoutine()
+    {
+        canSpawn = false;
+
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        worldPos.z = 0;
+
+        GameObject obj = Instantiate(prefab, worldPos, Quaternion.identity);
+
+        growing grow = obj.GetComponent<growing>();
+
+        yield return StartCoroutine(grow.Grow());
+
+        canSpawn = true;
     }
 }
