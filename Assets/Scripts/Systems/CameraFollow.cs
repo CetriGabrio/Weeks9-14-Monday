@@ -34,4 +34,9 @@ public class CameraFollow : MonoBehaviour
 
         transform.position = originalPosition;
     }
+
+    public void FollowRocket(GameObject rocket)
+    {
+        FollowTarget(rocket.transform);
+    }
 }

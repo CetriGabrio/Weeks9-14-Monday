@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 
 public class RocketLauncherUI : MonoBehaviour
@@ -14,15 +15,26 @@ public class RocketLauncherUI : MonoBehaviour
 
     [Header("Spawn")]
     public Transform launchPoint;
+
+    [Header("Camera")]
+    public CameraFollow cameraFollow;
+
+    [Header("Launch Event")]
+    public UnityEvent onRocketLaunched;
+
     private bool canSpawn = true;
 
     private GameObject selectedRocketPrefab;
+    private GameObject currentRocket;
+
     private float currentSize = 1f;
     private float currentSpeed = 5f;
     private float currentSpawnOffset = 0f;
 
-    [Header("Camera")]
-    public CameraFollow cameraFollow;
+    public GameObject GetCurrentRocket()
+    {
+        return currentRocket;
+    }
 
     public void SelectRocket(int index)
     {
@@ -46,21 +58,14 @@ public class RocketLauncherUI : MonoBehaviour
 
     public void LaunchRocket()
     {
-        if (!canSpawn)
-        {
-            Debug.Log("Rocket already active!");
+        if (!canSpawn || selectedRocketPrefab == null)
             return;
-        }
-
-        if (selectedRocketPrefab == null)
-        {
-            Debug.Log("No rocket selected.");
-            return;
-        }
 
         Vector3 spawnPosition = launchPoint.position + new Vector3(currentSpawnOffset, 0f, 0f);
 
         GameObject rocket = Instantiate(selectedRocketPrefab, spawnPosition, Quaternion.identity);
+
+        currentRocket = rocket;
 
         rocket.transform.localScale = Vector3.one * currentSize;
 
@@ -70,11 +75,10 @@ public class RocketLauncherUI : MonoBehaviour
             rocketScript.SetSpeed(currentSpeed);
         }
 
+        onRocketLaunched.Invoke();
+
         canSpawn = false;
-
         StartCoroutine(WaitForRocketDeath(rocket));
-
-        cameraFollow.FollowTarget(rocket.transform);
     }
 
     IEnumerator WaitForRocketDeath(GameObject rocket)
@@ -87,7 +91,7 @@ public class RocketLauncherUI : MonoBehaviour
         }
 
         cameraFollow.StopFollowing();
-
+        currentRocket = null;
         canSpawn = true;
     }
 }
