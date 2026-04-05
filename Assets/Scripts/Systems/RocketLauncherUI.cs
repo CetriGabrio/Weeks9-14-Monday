@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class RocketLauncherUI : MonoBehaviour
 {
@@ -100,6 +101,14 @@ public class RocketLauncherUI : MonoBehaviour
         if (rocketScript != null)
         {
             rocketScript.SetSpeed(currentSpeed);
+        }
+    }
+
+    public void LaunchFromInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            LaunchRocket();
         }
     }
 

@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "31b9c9ae-ed3b-4443-9b9a-d8fd442453f9",
+            "actions": [
+                {
+                    "name": "Launch",
+                    "type": "Button",
+                    "id": "70f11a3a-06ed-49f3-9a08-3b59e9da0211",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dad0938e-e89c-49f9-b301-659a992fc571",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Launch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
