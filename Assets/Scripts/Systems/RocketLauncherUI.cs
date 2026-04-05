@@ -21,6 +21,9 @@ public class RocketLauncherUI : MonoBehaviour
     private float currentSpeed = 5f;
     private float currentSpawnOffset = 0f;
 
+    [Header("Camera")]
+    public CameraFollow cameraFollow;
+
     public void SelectRocket(int index)
     {
         selectedRocketPrefab = rocketPrefabs[index];
@@ -43,7 +46,6 @@ public class RocketLauncherUI : MonoBehaviour
 
     public void LaunchRocket()
     {
-
         if (!canSpawn)
         {
             Debug.Log("Rocket already active!");
@@ -71,6 +73,8 @@ public class RocketLauncherUI : MonoBehaviour
         canSpawn = false;
 
         StartCoroutine(WaitForRocketDeath(rocket));
+
+        cameraFollow.FollowTarget(rocket.transform);
     }
 
     IEnumerator WaitForRocketDeath(GameObject rocket)
@@ -81,6 +85,8 @@ public class RocketLauncherUI : MonoBehaviour
         {
             Destroy(rocket);
         }
+
+        cameraFollow.StopFollowing();
 
         canSpawn = true;
     }
