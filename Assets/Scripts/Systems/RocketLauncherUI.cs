@@ -41,47 +41,83 @@ public class RocketLauncherUI : MonoBehaviour
 
     public void SelectRocket(int index)
     {
+        if (!canSpawn)
+            return;
+
         selectedRocketPrefab = rocketPrefabs[index];
+        CreateOrReplacePreviewRocket();
     }
 
     public void SetSize(float value)
     {
         currentSize = value;
-    }
 
+        if (currentRocket != null)
+        {
+            currentRocket.transform.localScale = Vector3.one * currentSize;
+        }
+    }
     public void SetSpeed(float value)
     {
         currentSpeed = value;
+
+        if (currentRocket != null)
+        {
+            Rocket rocketScript = currentRocket.GetComponent<Rocket>();
+            if (rocketScript != null)
+            {
+                rocketScript.SetSpeed(currentSpeed);
+            }
+        }
     }
 
     public void SetSpawnOffset(float value)
     {
         currentSpawnOffset = value;
+
+        if (currentRocket != null)
+        {
+            currentRocket.transform.position = launchPoint.position + new Vector3(currentSpawnOffset, 0f, 0f);
+        }
     }
 
-    public void LaunchRocket()
+    void CreateOrReplacePreviewRocket()
     {
-        if (!canSpawn || selectedRocketPrefab == null)
+        if (currentRocket != null)
+        {
+            Destroy(currentRocket);
+        }
+
+        if (selectedRocketPrefab == null)
             return;
 
         Vector3 spawnPosition = launchPoint.position + new Vector3(currentSpawnOffset, 0f, 0f);
 
-        GameObject rocket = Instantiate(selectedRocketPrefab, spawnPosition, Quaternion.identity);
+        currentRocket = Instantiate(selectedRocketPrefab, spawnPosition, Quaternion.identity);
+        currentRocket.transform.localScale = Vector3.one * currentSize;
 
-        currentRocket = rocket;
-
-        rocket.transform.localScale = Vector3.one * currentSize;
-
-        Rocket rocketScript = rocket.GetComponent<Rocket>();
+        Rocket rocketScript = currentRocket.GetComponent<Rocket>();
         if (rocketScript != null)
         {
             rocketScript.SetSpeed(currentSpeed);
+        }
+    }
+
+    public void LaunchRocket()
+    {
+        if (!canSpawn || currentRocket == null)
+            return;
+
+        Rocket rocketScript = currentRocket.GetComponent<Rocket>();
+        if (rocketScript != null)
+        {
+            rocketScript.Launch();
         }
 
         onRocketLaunched.Invoke();
 
         canSpawn = false;
-        StartCoroutine(WaitForRocketDeath(rocket));
+        StartCoroutine(WaitForRocketDeath(currentRocket));
     }
 
     IEnumerator WaitForRocketDeath(GameObject rocket)
