@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class RocketLauncherUI : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class RocketLauncherUI : MonoBehaviour
 
     [Header("Spawn")]
     public Transform launchPoint;
+    private bool canSpawn = true;
 
     private GameObject selectedRocketPrefab;
     private float currentSize = 1f;
@@ -41,6 +43,13 @@ public class RocketLauncherUI : MonoBehaviour
 
     public void LaunchRocket()
     {
+
+        if (!canSpawn)
+        {
+            Debug.Log("Rocket already active!");
+            return;
+        }
+
         if (selectedRocketPrefab == null)
         {
             Debug.Log("No rocket selected.");
@@ -58,5 +67,21 @@ public class RocketLauncherUI : MonoBehaviour
         {
             rocketScript.SetSpeed(currentSpeed);
         }
+
+        canSpawn = false;
+
+        StartCoroutine(WaitForRocketDeath(rocket));
+    }
+
+    IEnumerator WaitForRocketDeath(GameObject rocket)
+    {
+        yield return new WaitForSeconds(5f);
+
+        if (rocket != null)
+        {
+            Destroy(rocket);
+        }
+
+        canSpawn = true;
     }
 }
