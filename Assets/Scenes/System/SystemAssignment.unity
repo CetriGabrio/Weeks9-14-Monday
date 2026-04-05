@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 238394904}
   - component: {fileID: 238394903}
   m_Layer: 5
-  m_Name: Car3
+  m_Name: Rocket3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1563,7 +1563,7 @@ GameObject:
   - component: {fileID: 580777507}
   - component: {fileID: 580777506}
   m_Layer: 5
-  m_Name: Car4
+  m_Name: Rocket4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3679,7 +3679,7 @@ GameObject:
   - component: {fileID: 1330921644}
   - component: {fileID: 1330921643}
   m_Layer: 5
-  m_Name: Car1
+  m_Name: Rocket1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3927,7 +3927,7 @@ GameObject:
   - component: {fileID: 1464086578}
   - component: {fileID: 1464086577}
   m_Layer: 5
-  m_Name: Car2
+  m_Name: Rocket2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
