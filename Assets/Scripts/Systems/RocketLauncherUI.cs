@@ -22,6 +22,9 @@ public class RocketLauncherUI : MonoBehaviour
     [Header("Launch Event")]
     public UnityEvent onRocketLaunched;
 
+    [Header("Destroy Event")]
+    public UnityEvent onRocketDestroyed;
+
     private bool canSpawn = true;
 
     private GameObject selectedRocketPrefab;
@@ -89,6 +92,8 @@ public class RocketLauncherUI : MonoBehaviour
         {
             Destroy(rocket);
         }
+
+        onRocketDestroyed.Invoke();
 
         cameraFollow.StopFollowing();
         currentRocket = null;

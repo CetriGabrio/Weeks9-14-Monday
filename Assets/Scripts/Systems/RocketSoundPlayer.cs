@@ -8,4 +8,9 @@ public class RocketSoundPlayer : MonoBehaviour
     {
         audioSource.Play();
     }
+
+    public void StopLaunchSound()
+    {
+        audioSource.Stop();
+    }
 }
