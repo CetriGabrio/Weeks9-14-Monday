@@ -30,6 +30,7 @@ public class RocketLauncherUI : MonoBehaviour
 
     private GameObject selectedRocketPrefab;
     private GameObject currentRocket;
+    private Color currentColor = Color.white;
 
     private float currentSize = 1f;
     private float currentSpeed = 5f;
@@ -72,6 +73,46 @@ public class RocketLauncherUI : MonoBehaviour
         }
     }
 
+    public void SetColor(Color color)
+    {
+        currentColor = color;
+
+        if (currentRocket != null)
+        {
+            ApplyColor(currentRocket);
+        }
+    }
+
+    public void SetColorPurple()
+    {
+        SetColor(Color.purple);
+    }
+
+    public void SetColorWhite()
+    {
+        SetColor(Color.white);
+    }
+
+    public void SetColorGreen()
+    {
+        SetColor(Color.green);
+    }
+
+    public void SetColorYellow()
+    {
+        SetColor(Color.yellow);
+    }
+
+    void ApplyColor(GameObject rocket)
+    {
+        SpriteRenderer sr = rocket.GetComponent<SpriteRenderer>();
+
+        if (sr != null)
+        {
+            sr.color = currentColor;
+        }
+    }
+
     public void SetSpawnOffset(float value)
     {
         currentSpawnOffset = value;
@@ -102,6 +143,8 @@ public class RocketLauncherUI : MonoBehaviour
         {
             rocketScript.SetSpeed(currentSpeed);
         }
+
+        ApplyColor(currentRocket);
     }
 
     public void LaunchFromInput(InputAction.CallbackContext context)
@@ -127,6 +170,8 @@ public class RocketLauncherUI : MonoBehaviour
 
         canSpawn = false;
         StartCoroutine(WaitForRocketDeath(currentRocket));
+
+        ApplyColor(currentRocket);
     }
 
     IEnumerator WaitForRocketDeath(GameObject rocket)
