@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4941,4 +4941,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2614ae175ad08114d9139a0d7c1b5039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rocket
-  flameParticles: {fileID: 0}
+  flameParticles: {fileID: 2882277730240785635}

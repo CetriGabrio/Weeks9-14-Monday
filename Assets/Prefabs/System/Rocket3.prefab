@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2614ae175ad08114d9139a0d7c1b5039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rocket
-  flameParticles: {fileID: 0}
+  flameParticles: {fileID: 1066854775061231199}
 --- !u!1 &6998355074585857946
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
