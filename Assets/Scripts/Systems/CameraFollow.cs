@@ -21,23 +21,23 @@ public class CameraFollow : MonoBehaviour
         if (isFollowing && target != null)
         {
             Vector3 newPos = transform.position; //Keep current position
-            newPos.y = target.position.y;        //Match only the vertical position of the target
-            transform.position = newPos;         //Apply updated position
+            newPos.y = target.position.y; //Match only the vertical position of the target
+            transform.position = newPos; //Apply updated position
         }
     }
 
     //Starts following the target, which is the chosen rocket
     public void FollowTarget(Transform newTarget)
     {
-        target = newTarget;   //Assign the right target
-        isFollowing = true;  //Enable the follow behavior
+        target = newTarget; //Assign the right target
+        isFollowing = true; //Enable the follow behavior
     }
 
     //Stops following and resets camera position
     public void StopFollowing()
     {
-        isFollowing = false;   //Disable the follow behavior
-        target = null;        //Clear the target reference
+        isFollowing = false; //Disable the follow behavior
+        target = null; //Clear the target reference
 
         transform.position = originalPosition; //Reset the camera to the initial position
     }

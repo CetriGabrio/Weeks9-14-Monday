@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    private float speed = 5f;              //Speed of the rocket
-    private bool hasLaunched = false;      //Checks whether the rocket has been launched
+    private float speed = 5f; //Speed of the rocket
+    private bool hasLaunched = false; //Checks whether the rocket has been launched
 
-    public ParticleSystem flameParticles;  //Reference to the flame particle effect
+    public ParticleSystem flameParticles; //Reference to the flame particle effect
 
     void Start()
     {

@@ -14,9 +14,9 @@ public class RocketLauncherUI : MonoBehaviour
     public GameObject[] rocketPrefabs; //List of all the selectable rocket prefabs
 
     [Header("UI Sliders")]
-    public Slider sizeSlider;   //Slider used to control the rocket size
-    public Slider speedSlider;  //Slider used to control the rocket speed
-    public Slider spawnSlider;  //Slider used to control the rocket spawn position on the X-axis
+    public Slider sizeSlider; //Slider used to control the rocket size
+    public Slider speedSlider; //Slider used to control the rocket speed
+    public Slider spawnSlider; //Slider used to control the rocket spawn position on the X-axis
 
     [Header("Spawn")]
     public Transform launchPoint; //Base position where rockets appear
@@ -33,12 +33,12 @@ public class RocketLauncherUI : MonoBehaviour
     private bool canSpawn = true; //Controls whether a new rocket can be launched
 
     private GameObject selectedRocketPrefab; //Stores the currently selected rocket prefab
-    private GameObject currentRocket;        //Stores the current preview/launched rocket
+    private GameObject currentRocket; //Stores the current preview/launched rocket
     private Color currentColor = Color.white; //Stores the currently selected rocket color
 
-    private float currentSize = 1f;         //Current rocket size value
-    private float currentSpeed = 5f;        //Current rocket speed value
-    private float currentSpawnOffset = 0f;  //Current horizontal spawn offset
+    private float currentSize = 1f; //Current rocket size value
+    private float currentSpeed = 5f; //Current rocket speed value
+    private float currentSpawnOffset = 0f; //Current horizontal spawn offset
 
     //Returns the current rocket so other scripts can access it
     public GameObject GetCurrentRocket()
@@ -53,7 +53,7 @@ public class RocketLauncherUI : MonoBehaviour
             return; //Prevent changing a rocket while one is flying
 
         selectedRocketPrefab = rocketPrefabs[index]; //Store the selected prefab
-        CreateOrReplacePreviewRocket();              //Update preview rocket by "creating" a rocket if none is visible, or replacing it if player chooses a different model
+        CreateOrReplacePreviewRocket(); //Update preview rocket by "creating" a rocket if none is visible, or replacing it if player chooses a different model
     }
 
     //Updates the current rocket size from the slider
@@ -209,7 +209,7 @@ public class RocketLauncherUI : MonoBehaviour
         onRocketDestroyed.Invoke(); //Trigger all the destroy event listeners
 
         cameraFollow.StopFollowing(); //Reset the camera position to its original position
-        currentRocket = null;         //Clear the current rocket reference
-        canSpawn = true;              //Allow a new rocket to be selected, instantiated and launched
+        currentRocket = null; //Clear the current rocket reference
+        canSpawn = true; //Allow a new rocket to be selected, instantiated and launched
     }
 }

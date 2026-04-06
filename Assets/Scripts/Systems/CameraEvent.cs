@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraEvent : MonoBehaviour
 {
-    public RocketLauncherUI launcher;     //Reference to the rocket launcher to access the current rocket
-    public CameraFollow cameraFollow;     //Reference to the camera follow system
+    public RocketLauncherUI launcher; //Reference to the rocket launcher to access the current rocket
+    public CameraFollow cameraFollow; //Reference to the camera follow system
 
     //Called by UnityEvent to make the camera follow the current rocket
     public void FollowCurrentRocket()
